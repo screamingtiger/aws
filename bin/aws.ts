@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { FreeStack } from '../lib/aws-stack';
+import { FreeStack } from '../lib/free-stack';
 
 const app = new cdk.App();
 new FreeStack(app, 'FreeStack', {
