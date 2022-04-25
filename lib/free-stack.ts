@@ -6,7 +6,7 @@ import { aws_apigateway as apigw } from 'aws-cdk-lib';
 import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as path from 'path';
-import { ApiKey } from 'aws-cdk-lib/aws-apigateway';
+import { ApiKey, RestApiBase } from 'aws-cdk-lib/aws-apigateway';
 import { PlacementConstraint } from 'aws-cdk-lib/aws-ecs';
 
 
@@ -30,6 +30,11 @@ export class FreeStack extends Stack {
     });
 
 
+    const deployment = new apigw.Deployment(this, 'Deploymentv2', {api});
+
+    const stageV2 = new apigw.Stage(this,"v2",{deployment});
+
+    
     const key = api.addApiKey("trashKey", { apiKeyName: "trashKey", value: "joeythompsonisnumberone" });
 
     const usagePlan = api.
@@ -41,9 +46,15 @@ export class FreeStack extends Stack {
         }
       });
 
-    usagePlan.addApiStage({
+   usagePlan.addApiStage({
       stage: api.deploymentStage
     })
+/*
+    usagePlan.addApiStage({
+      stage: stageV2
+    })
+*/  
+
 
     v1.addMethod(
       'GET',
