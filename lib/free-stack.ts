@@ -30,9 +30,9 @@ export class FreeStack extends Stack {
     });
 
 
-    const deployment = new apigw.Deployment(this, 'Deploymentv2', {api});
+    //const deployment = new apigw.Deployment(this, 'Deploymentv2', {api});
 
-    const stageV2 = new apigw.Stage(this,"v2",{deployment});
+    // const stageV2 = new apigw.Stage(this,"v2",{deployment});
 
     
     const key = api.addApiKey("trashKey", { apiKeyName: "trashKey", value: "joeythompsonisnumberone" });
